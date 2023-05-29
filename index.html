@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <h1>Product Page</h1>
+    <div class="product-grid" id="productGrid">
+        <!-- Product items will be dynamically generated here -->
+    </div>
+</body>
+    <script>
+        var products = [
+            {
+                name: "Product 1",
+                image: "product1.jpg",
+                description: "Description of Product 1"
+            },
+            {
+                name: "Product 2",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 3",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 4",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 5",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 6",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 7",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+            {
+                name: "Product 8",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },  
+            {
+                name: "Product 8",
+                image: "product2.jpg",
+                description: "Description of Product 2"
+            },
+        ];
+
+        var productGrid = document.getElementById("productGrid");
+
+        products.forEach(function(product) {
+        var productItem = document.createElement("div");
+        productItem.className = "product-item";
+
+        var productName = document.createElement("h3");
+        productName.textContent = product.name;
+
+        var productImage = document.createElement("img");
+        productImage.src = product.image;
+
+        var productDescription = document.createElement("p");
+        productDescription.textContent = product.description;
+
+        productItem.appendChild(productName);
+        productItem.appendChild(productImage);
+        productItem.appendChild(productDescription);
+
+        productGrid.appendChild(productItem);
+        });
+    </script>
+</html>

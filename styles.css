@@ -1,0 +1,19 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+
+.product-item {
+    width: 160px;
+    height: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
