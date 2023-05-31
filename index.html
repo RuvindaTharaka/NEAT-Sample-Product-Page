@@ -4,6 +4,24 @@
    <title>Product Page</title>
    <link rel="stylesheet" type="text/css" href="styles.css">
    <script src="script.js"></script>
+   <style>
+        .specification-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .specification-table th,
+        .specification-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .specification-table th {
+            background-color: #f2f2f2;
+        }
+ 
+   </style>
 </head>
 <body>
    <div class="product-grid" id="productGrid">
@@ -11,53 +29,88 @@
    </div>
 </body>
 <script>
-    var products = [
-    {
-        name: "Product 1",
-        image: "product1.jpg",
-        description: "Description of Product 1",
-        details: "Detailed information about Product 1"
-    },
-    {
-        name: "Product 2",
-        image: "product2.jpg",
-        description: "Description of Product 2",
-        details: "Detailed information about Product 2"
-    },
-    // Add more products as needed
- ];
- 
- var productGrid = document.getElementById("productGrid");
- 
- products.forEach(function(product) {
-    var productItem = document.createElement("div");
-    productItem.className = "product-item";
- 
-    var productName = document.createElement("h3");
-    productName.textContent = product.name;
- 
-    var productImage = document.createElement("img");
-    productImage.src = product.image;
- 
-    var productDescription = document.createElement("p");
-    productDescription.textContent = product.description;
- 
-    productItem.appendChild(productName);
-    productItem.appendChild(productImage);
-    productItem.appendChild(productDescription);
- 
-    productItem.addEventListener("click", function() {
-        openProductDetailPage(product);
-    });
- 
-    productGrid.appendChild(productItem);
- });
- 
- function openProductDetailPage(product) {
-    var productDetailURL = "product-detail.html"; // Specify the correct path to the product detail HTML file
-    var productDetailWindow = window.open(productDetailURL, "_blank");
-    productDetailWindow.product = product;
- }
- 
+  var products = [
+   {
+       name: "Product 1",
+       image: "product1.jpg",
+       description: "Description of Product 1",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>10 kg</td></tr>' +
+               '<tr><th>Price</th><td>$100</td></tr>' +
+               '<tr><th>Height</th><td>20 cm</td></tr>' +
+               '<tr><th>Width</th><td>30 cm</td></tr>' +
+               '</table>'
+       }
+   },
+   {
+       name: "Product 2",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       }
+   },
+   // Add more products as needed
+];
+
+var productGrid = document.getElementById("productGrid");
+
+products.forEach(function(product) {
+   var productItem = document.createElement("div");
+   productItem.className = "product-item";
+
+   var productName = document.createElement("h3");
+   productName.textContent = product.name;
+
+   var productImage = document.createElement("img");
+   productImage.src = product.image;
+
+   productItem.appendChild(productName);
+   productItem.appendChild(productImage);
+
+   productItem.addEventListener("click", function() {
+       openProductDetailPage(product);
+   });
+
+   productGrid.appendChild(productItem);
+});
+
+function openProductDetailPage(product) {
+   var productDetailWindow = window.open("", "_blank");
+
+   var productName = document.createElement("h2");
+   productName.textContent = product.name;
+
+   var productImage = document.createElement("img");
+   productImage.src = product.image;
+
+   var productDetailDiv = document.createElement("div");
+   productDetailDiv.className = "product-detail";
+
+   productDetailDiv.appendChild(productName);
+   productDetailDiv.appendChild(productImage);
+
+   if (product.description) {
+       var productDescription = document.createElement("p");
+       productDescription.textContent = product.description;
+       productDetailDiv.appendChild(productDescription);
+   }
+
+   if (product.specification && product.specification.table) {
+        var specificationTable = document.createElement("div");
+        specificationTable.innerHTML = product.specification.table;
+        specificationTable.classList.add("specification-table"); // Add this line
+        productDetailDiv.appendChild(specificationTable);
+   }
+
+
+   productDetailWindow.document.body.appendChild(productDetailDiv);
+}
+
 </script>
 </html>

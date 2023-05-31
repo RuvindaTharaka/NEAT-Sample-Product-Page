@@ -16,4 +16,23 @@
     width: 80px;
     height: 80px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
 }
+
+
+.specification-table {
+    border-collapse: collapse;
+    width: 100%;
+ }
+ 
+ .specification-table th,
+ .specification-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+ }
+ 
+ .specification-table th {
+    background-color: #f2f2f2;
+ }
+ 
