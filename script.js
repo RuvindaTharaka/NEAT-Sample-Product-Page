@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <title>Product Page</title>
-   <link rel="stylesheet" type="text/css" href="styles.css">
-   <script src="script.js"></script>
-</head>
-<body>
-   <div class="product-grid" id="productGrid">
-       <!-- Product items will be dynamically generated here -->
-   </div>
-</body>
-<script>
-    var products = [
+var products = [
     {
         name: "Product 1",
         image: "product1.jpg",
@@ -59,5 +46,3 @@
     productDetailWindow.product = product;
  }
  
-</script>
-</html>
