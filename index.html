@@ -5,7 +5,7 @@
    <link rel="stylesheet" type="text/css" href="styles.css">
    <script src="script.js"></script>
    <style>
-        .specification-table {
+        git .specification-table {
             border-collapse: collapse;
             width: 100%;
         }
@@ -29,7 +29,7 @@
    </div>
 </body>
 <script>
-  var products = [
+var products = [
    {
        name: "Product 1",
        image: "product1.jpg",
@@ -81,7 +81,15 @@ products.forEach(function(product) {
 });
 
 function openProductDetailPage(product) {
-   var productDetailWindow = window.open("", "_blank");
+   var modalOverlay = document.createElement("div");
+   modalOverlay.className = "modal-overlay";
+
+   var modalContent = document.createElement("div");
+   modalContent.className = "modal-content";
+
+   var closeBtn = document.createElement("span");
+   closeBtn.className = "close-btn";
+   closeBtn.innerHTML = "&times;";
 
    var productName = document.createElement("h2");
    productName.textContent = product.name;
@@ -92,6 +100,7 @@ function openProductDetailPage(product) {
    var productDetailDiv = document.createElement("div");
    productDetailDiv.className = "product-detail";
 
+   productDetailDiv.appendChild(closeBtn);
    productDetailDiv.appendChild(productName);
    productDetailDiv.appendChild(productImage);
 
@@ -102,14 +111,19 @@ function openProductDetailPage(product) {
    }
 
    if (product.specification && product.specification.table) {
-        var specificationTable = document.createElement("div");
-        specificationTable.innerHTML = product.specification.table;
-        specificationTable.classList.add("specification-table"); // Add this line
-        productDetailDiv.appendChild(specificationTable);
+       var specificationTable = document.createElement("div");
+       specificationTable.innerHTML = product.specification.table;
+       productDetailDiv.appendChild(specificationTable);
    }
 
+   modalContent.appendChild(productDetailDiv);
+   modalOverlay.appendChild(modalContent);
 
-   productDetailWindow.document.body.appendChild(productDetailDiv);
+   document.body.appendChild(modalOverlay);
+
+   closeBtn.addEventListener("click", function() {
+       modalOverlay.remove();
+   });
 }
 
 </script>
