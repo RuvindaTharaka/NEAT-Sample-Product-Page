@@ -24,6 +24,9 @@
    </style>
 </head>
 <body>
+    <button id="btnAll" onclick="filterProducts('all')">All</button>
+    <button id="btnCategory1" onclick="filterProducts('category1')">Category 1</button>
+    <button id="btnCategory2" onclick="filterProducts('category2')">Category 2</button>
    <div class="product-grid" id="productGrid">
        <!-- Product items will be dynamically generated here -->
    </div>
@@ -41,7 +44,8 @@ var products = [
                '<tr><th>Height</th><td>20 cm</td></tr>' +
                '<tr><th>Width</th><td>30 cm</td></tr>' +
                '</table>'
-       }
+       },
+       category: "category1"
    },
    {
        name: "Product 2",
@@ -53,7 +57,86 @@ var products = [
                '<tr><th>Height</th><td>25 cm</td></tr>' +
                '<tr><th>Width</th><td>40 cm</td></tr>' +
                '</table>'
-       }
+       },
+       category: "category1"
+   },
+   {
+       name: "Product 3",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category1"
+   },
+   {
+       name: "Product 4",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category2"
+   },
+   {
+       name: "Product 5",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category2"
+   },
+   {
+       name: "Product 6",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category2"
+   },
+   {
+       name: "Product 7",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category2"
+   },
+   {
+       name: "Product 8",
+       image: "product2.jpg",
+       specification: {
+           table: '<table>' +
+               '<tr><th>Weight</th><td>15 kg</td></tr>' +
+               '<tr><th>Price</th><td>$200</td></tr>' +
+               '<tr><th>Height</th><td>25 cm</td></tr>' +
+               '<tr><th>Width</th><td>40 cm</td></tr>' +
+               '</table>'
+       },
+       category: "category2"
    },
    // Add more products as needed
 ];
@@ -125,6 +208,46 @@ function openProductDetailPage(product) {
        modalOverlay.remove();
    });
 }
+
+
+/* Filter the products */
+function filterProducts(category) {
+   var filteredProducts;
+   if (category === "all") {
+       filteredProducts = products;
+   } else {
+       filteredProducts = products.filter(function(product) {
+           return product.category === category;
+       });
+   }
+   renderProductGrid(filteredProducts);
+}
+
+/* Render the relavant product grid */
+function renderProductGrid(filteredProducts) {
+   productGrid.innerHTML = ""; // Clear the product grid
+
+   filteredProducts.forEach(function(product) {
+       var productItem = document.createElement("div");
+       productItem.className = "product-item";
+
+       var productName = document.createElement("h3");
+       productName.textContent = product.name;
+
+       var productImage = document.createElement("img");
+       productImage.src = product.image;
+
+       productItem.appendChild(productName);
+       productItem.appendChild(productImage);
+
+       productItem.addEventListener("click", function() {
+           openProductDetailPage(product);
+       });
+
+       productGrid.appendChild(productItem);
+   });
+}
+
 
 </script>
 </html>
